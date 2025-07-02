@@ -23,6 +23,7 @@ Route::post('/login',function(Request $request){
        'password'=>['required'],
    ]);
 
+   //user情報を取得する
    $user = User::where('email',$request->email)->first();
    if(!$user|| !Hash::check($request->password,$user->password)){
        throw ValidationException::withMessages([
