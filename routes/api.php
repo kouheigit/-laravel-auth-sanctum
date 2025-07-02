@@ -27,7 +27,7 @@ Route::post('/login',function(Request $request){
    $user = User::where('email',$request->email)->first();
    if(!$user|| !Hash::check($request->password,$user->password)){
        throw ValidationException::withMessages([
-           'email'=>['emailが間違っています']
+           'email'=>['認証に失敗しました。メールアドレスまたはパスワードが間違っています。']
        ]);
    }
     return ['token' => $user->createToken('api-token')->plainTextToken];
