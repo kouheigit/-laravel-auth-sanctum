@@ -17,7 +17,10 @@ use App\Models\User;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::apiResource('posts', PostController::class);
+
 Route::post('/login',function(Request $request){
+
    $request->validate([
        'email'=>['required','email'],
        'password'=>['required'],
