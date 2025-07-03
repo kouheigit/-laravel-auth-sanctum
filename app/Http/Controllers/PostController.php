@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -33,9 +35,13 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update',$post);
+
+        $post->update($request->all());
+
+        return response()->json($post);
     }
 
     /**
