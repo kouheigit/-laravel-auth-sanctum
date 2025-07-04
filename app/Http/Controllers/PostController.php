@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Post;
 
 class PostController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -37,11 +39,16 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        return response()->json([
+            'user_id' => auth()->id(),
+            'post_user_id' => $post->user_id,
+        ]);
+        /*
         $this->authorize('update',$post);
 
         $post->update($request->all());
 
-        return response()->json($post);
+        return response()->json($post);*/
     }
 
     /**
