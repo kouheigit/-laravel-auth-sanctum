@@ -18,7 +18,8 @@ use App\Models\User;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::apiResource('posts', PostController::class);
+//Route::apiResource('posts', PostController::class);
+Route::middleware('auth:sanctum')->apiResource('posts', PostController::class);
 
 Route::post('/login',function(Request $request){
 

@@ -39,16 +39,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        /*
         return response()->json([
             'user_id' => auth()->id(),
             'post_user_id' => $post->user_id,
-        ]);
-        /*
+        ]);*/
+
         $this->authorize('update',$post);
 
         $post->update($request->all());
 
-        return response()->json($post);*/
+        return response()->json($post);
     }
 
     /**
