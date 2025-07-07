@@ -28,13 +28,6 @@ class PostController extends Controller
         $validated['user_id'] = auth()->id();
         $post = Post::create($validated);
         return response()->json($post,201);
-        /*
-         * StorePostRequest
-     $validated = $request->validated();
-    $validated['user_id'] = auth()->id();
-    $post = Post::create($validated);
-    return response()->json($post, 201);
-         */
     }
 
     /**
@@ -42,11 +35,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        /*
-     $this->authorize('update', $post);
-    $post->update($request->validated());
-    return response()->json($post);
-         */
+
     }
 
     /**
