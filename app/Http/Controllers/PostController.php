@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -21,9 +22,19 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['user_id'] = auth()->id();
+        $post = Post::create($validated);
+        return response()->json($post,201);
+        /*
+         * StorePostRequest
+     $validated = $request->validated();
+    $validated['user_id'] = auth()->id();
+    $post = Post::create($validated);
+    return response()->json($post, 201);
+         */
     }
 
     /**
@@ -31,7 +42,11 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        /*
+     $this->authorize('update', $post);
+    $post->update($request->validated());
+    return response()->json($post);
+         */
     }
 
     /**
